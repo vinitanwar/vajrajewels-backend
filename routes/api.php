@@ -16,7 +16,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
- 
+   
 
 Route::post("v1/user/signup",[SiteuserController::class,"Signup"]);
 Route::post("v1/user/login",[SiteuserController::class,"LoginIn"]);

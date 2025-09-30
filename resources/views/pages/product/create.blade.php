@@ -55,7 +55,7 @@
             <div class="grid md:grid-cols-2 gap-6">
                 <div>
                     <label class="block text-gray-700 font-semibold mb-2">Old Price</label>
-                    <input type="text" name="old_price" value="{{ old('old_price') }}"
+                    <input type="text" name="old_price" value="{{ old('old_price') }}" required
                         class="w-full border border-gray-300 rounded-xl p-4 bg-white text-gray-900 placeholder-gray-400 focus:ring-2 focus:ring-indigo-400 focus:border-indigo-600 shadow-sm transition duration-300">
                     @error('old_price')<p class="text-red-600 text-sm mt-1">{{ $message }}</p>@enderror
                 </div>
@@ -71,7 +71,7 @@
             <div class="grid md:grid-cols-2 gap-6">
                 <div>
                     <label class="block text-gray-700 font-semibold mb-2">Category *</label>
-                    <select name="category_id" class="w-full border border-gray-300 rounded-xl p-4 bg-white text-gray-900 focus:ring-2 focus:ring-indigo-400 focus:border-indigo-600 shadow-sm transition duration-300">
+                    <select required name="category_id" class="w-full border border-gray-300 rounded-xl p-4 bg-white text-gray-900 focus:ring-2 focus:ring-indigo-400 focus:border-indigo-600 shadow-sm transition duration-300">
                         <option value="">-- Select Category --</option>
                         @foreach($categories as $category)
                             <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? "selected" : "" }}>
@@ -99,13 +99,13 @@
             <div class="grid md:grid-cols-2 gap-6">
                 <div>
                     <label class="block text-gray-700 font-semibold mb-2">Main Image *</label>
-                    <input type="file" name="img1" accept=".jpg,.jpeg,.png,.webp"
+                    <input  required type="file" name="img1" accept=".jpg,.jpeg,.png,.webp"  id="imageUpload"
                         class="w-full border border-gray-300 rounded-xl p-4 bg-white focus:ring-2 focus:ring-indigo-400 shadow-sm transition duration-300" required>
                     @error('img1')<p class="text-red-600 text-sm mt-1">{{ $message }}</p>@enderror
                 </div>
                 <div>
                     <label class="block text-gray-700 font-semibold mb-2">Secondary Image</label>
-                    <input type="file" name="img2" accept=".jpg,.jpeg,.png,.webp"
+                    <input  required type="file" name="img2" accept=".jpg,.jpeg,.png,.webp" id="imageUpload"
                         class="w-full border border-gray-300 rounded-xl p-4 bg-white focus:ring-2 focus:ring-indigo-400 shadow-sm transition duration-300">
                     @error('img2')<p class="text-red-600 text-sm mt-1">{{ $message }}</p>@enderror
                 </div>
@@ -113,7 +113,7 @@
 
             <div>
                 <label class="block text-gray-700 font-semibold mb-2">Gallery Images</label>
-                <input type="file" name="innerimages[]" multiple accept=".jpg,.jpeg,.png,.webp"
+                <input type="file" name="innerimages[]" multiple accept=".jpg,.jpeg,.png,.webp" 
                     class="w-full border border-gray-300 rounded-xl p-4 bg-white focus:ring-2 focus:ring-indigo-400 shadow-sm transition duration-300">
                 <p class="text-sm text-gray-500 mt-1">You can upload multiple images (JPG, PNG, WEBP)</p>
                 @error('innerimages.*')<p class="text-red-600 text-sm mt-1">{{ $message }}</p>@enderror
@@ -275,6 +275,20 @@ const detailsfield = document.getElementById("delailsfield");
             toolbar: ['imageTextAlternative', 'imageStyle:full', 'imageStyle:side']
         }
     }).catch(error => console.error(error));
+
+
+
+document.getElementById('imageUpload').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    const maxSize = 200 * 1024; // 200KB in bytes
+    
+    if (file && file.size > maxSize) {
+        alert('File size must be less than 200KB');
+        e.target.value = ''; // Clear the input
+    }
+});
+
+    
 </script>
 
 {{-- ✅ Tailwind Animation Classes --}}

@@ -55,13 +55,13 @@
             <div class="grid md:grid-cols-2 gap-6">
                 <div>
                     <label class="block text-gray-700 font-semibold mb-2">Old Price</label>
-                    <input type="text" name="old_price" value="{{ old('old_price') }}" required
+                    <input type="text" name="old_price" value="{{ old('old_price') }}"
                         class="w-full border border-gray-300 rounded-xl p-4 bg-white text-gray-900 placeholder-gray-400 focus:ring-2 focus:ring-indigo-400 focus:border-indigo-600 shadow-sm transition duration-300">
                     @error('old_price')<p class="text-red-600 text-sm mt-1">{{ $message }}</p>@enderror
                 </div>
                 <div>
                     <label class="block text-gray-700 font-semibold mb-2">Current Price *</label>
-                    <input type="text" name="price" value="{{ old('price') }}" required
+                    <input type="text" name="price" value="{{ old('price') }}"
                         class="w-full border border-gray-300 rounded-xl p-4 bg-white text-gray-900 placeholder-gray-400 focus:ring-2 focus:ring-indigo-400 focus:border-indigo-600 shadow-sm transition duration-300" required>
                     @error('price')<p class="text-red-600 text-sm mt-1">{{ $message }}</p>@enderror
                 </div>
@@ -71,7 +71,7 @@
             <div class="grid md:grid-cols-2 gap-6">
                 <div>
                     <label class="block text-gray-700 font-semibold mb-2">Category *</label>
-                    <select name="category_id" required class="w-full border border-gray-300 rounded-xl p-4 bg-white text-gray-900 focus:ring-2 focus:ring-indigo-400 focus:border-indigo-600 shadow-sm transition duration-300">
+                    <select name="category_id" class="w-full border border-gray-300 rounded-xl p-4 bg-white text-gray-900 focus:ring-2 focus:ring-indigo-400 focus:border-indigo-600 shadow-sm transition duration-300">
                         <option value="">-- Select Category --</option>
                         @foreach($categories as $category)
                             <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? "selected" : "" }}>
@@ -145,7 +145,7 @@
                     placeholder="Enter Details and press Enter" onkeydown="handleDetails(event)" />
 
                 <div id="delailsfield" class="my-3 flex flex-wrap gap-3">
-                  
+
                 </div>
             </div>
             <div class="grid md:grid-cols-2 gap-6">
@@ -290,6 +290,8 @@ const detailsfield = document.getElementById("delailsfield");
         box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
     }
 </style>
+
+
 
 
 
